@@ -2,12 +2,6 @@
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
-(let ((minver "23.3"))
-  (when (version<= emacs-version minver)
-    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
-(when (version<= emacs-version "24")
-  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
-
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-benchmarking) ;; Measure startup time
 
@@ -27,6 +21,13 @@
 ;; Bootstrap config
 ;;----------------------------------------------------------------------------
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+;;----------------------------------------------------------------------------
+;; Initial local file
+;;----------------------------------------------------------------------------
+(setq init-local-file (expand-file-name "init-local.el" user-emacs-directory))
+
+
 (require 'init-compat)
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
@@ -49,9 +50,10 @@
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
 
+
 (require 'init-frame-hooks)
 (require 'init-xterm)
-(require 'init-themes)
+;(require 'init-themes)
 (require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-dired)
@@ -80,8 +82,8 @@
 
 (require 'init-vc)
 (require 'init-darcs)
-(require 'init-git)
-(require 'init-github)
+;(require 'init-git)
+;(require 'init-github)
 
 (require 'init-projectile)
 
@@ -159,9 +161,12 @@
 (require 'init-locales)
 
 
-(provide 'init)
+;;----------------------------------------------------------------------------
+;; Variables configured via the interactive 'customize' interface
+;;----------------------------------------------------------------------------
+(when (file-exists-p init-local-file)
+  (load init-local-file))
 
-;; Local Variables:
-;; coding: utf-8
-;; no-byte-compile: t
-;; End:
+
+                                        ; (provide 'init)
+
