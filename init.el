@@ -49,7 +49,8 @@
 (require-package 'diminish)
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
-
+(require-package 'neotree)
+(require-package 'magit)
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
@@ -149,10 +150,17 @@
   (load custom-file))
 
 
+;;
+;;
+;;
+(require 'browse-kill-ring+)
+
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-local" containing personal settings
 ;;----------------------------------------------------------------------------
 (require 'init-local nil t)
+
+
 
 
 ;;----------------------------------------------------------------------------
