@@ -34,12 +34,13 @@
 ;; ----------------------------------------------------------------------------
 (windmove-default-keybindings 'meta)
 
+
+;; ----------------------------------------------------------------------------
+;; File Explore configuration (Neotree)
+;; ----------------------------------------------------------------------------
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
-(load-theme 'monokai t)
-(setq-default tab-width 4)
-(setq js-indent-level 4)
-(setq-default indent-tabs-mode nil)
+
 
 ;;-------------------------------------------------------------------------------
 ;; Alternate linux grep to win32 grep
@@ -65,6 +66,20 @@
   (shell-command-on-region
    (point-min) (point-max)
    (read-shell-command "Shell command on buffer: ")))
+
+(require 'magit-gitflow)
+(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+
+
+;;-------------------------------------------------------------------------------
+;; Custom face.
+;;-------------------------------------------------------------------------------
+(load-theme 'monokai t)
+(setq-default tab-width 4)
+(setq js-indent-level 4)
+(setq-default indent-tabs-mode nil)
+(set-default-font "Menlo-Regular-9")
+
 
 
 (provide 'init-local)

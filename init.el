@@ -51,6 +51,7 @@
 (require-package 'mwe-log-commands)
 (require-package 'neotree)
 (require-package 'magit)
+(require-package 'monokai-theme)
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
